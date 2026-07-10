@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="kaa">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Күн Панельлери — Мағлыўмат Порталы | Қарақалпақша</title>
+  <meta name="description"
+    content="Күн панельлери ҳаққында толық мағлыўмат: жумыс принципи, пайдасы, экономикасы, ҳәм калькулятор. Қарақалпақ тилинде." />
+
+  <!-- Preconnect fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js" defer></script>
+
+  <!-- Main JS -->
+  <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
+</head>
+
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     PAGE LOADER
+═══════════════════════════════════════════════════════════════ -->
+<div id="page-loader" aria-hidden="true">
+  <div class="loader-sun"></div>
+  <p class="loader-text">Жүкленмоқда…</p>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     NAVIGATION
+═══════════════════════════════════════════════════════════════ -->
+<nav id="navbar" role="navigation" aria-label="Тийкарғы мениу">
+  <div class="container nav-inner">
+    <a href="#hero" class="nav-logo" id="nav-logo">
+      <div class="sun-icon" aria-hidden="true">☀</div>
+      Күн<span>Энергия</span>
+    </a>
+    <ul class="nav-links" role="list">
+      <li><a href="#how"        id="nav-how">Жумыс принципи</a></li>
+      <li><a href="#benefits"   id="nav-benefits">Пайдасы</a></li>
+      <li><a href="#weather"    id="nav-weather">Ҳаўа-рай</a></li>
+      <li><a href="#stats"      id="nav-stats">Статистика</a></li>
+      <li><a href="#calculator" id="nav-calc">Калькулятор</a></li>
+      <li><a href="#faq"        id="nav-faq">FAQ</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     HERO
+═══════════════════════════════════════════════════════════════ -->
+<section id="hero" aria-labelledby="hero-title">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="particles" aria-hidden="true"></div>
+
+  <div class="container hero-grid">
+    <!-- Left -->
+    <div class="hero-left">
+      <div class="badge">☀️ Таза Энергия Порталы</div>
+      <h1 class="hero-title" id="hero-title">
+        Күн Панельлери —<br/>
+        <span class="highlight">Болашақтың Энергиясы</span>
+      </h1>
+      <p class="hero-desc">
+        Күн энергиясы ҳаққында толық мағлыўмат: жумыс принципи,
+        экономикасы, ҳаўа-райдағы жумысы ҳәм интерактив калькулятор.
+        Тек фактлер — пайдалы ҳәм анық.
+      </p>
+      <div class="hero-btns">
+        <a href="#how" class="btn-primary" id="hero-learn-btn">Толығырақ оқыў ↓</a>
+        <a href="#calculator" class="btn-secondary" id="hero-calc-btn">⚡ Калькулятор</a>
+      </div>
+    </div>
+
+    <!-- Right — Solar Scene Illustration -->
+    <div class="hero-right" aria-hidden="true">
+      <div class="solar-scene">
+        <!-- Sun -->
+        <div class="sun-main" id="sun-main"></div>
+
+        <!-- Info chips -->
+        <div class="info-chip" style="top:20px; left:-10px; animation-delay:.5s">
+          ⚡ 400 Вт / панель
+        </div>
+        <div class="info-chip" style="top:160px; right:-20px; animation-delay:1.2s">
+          🌿 CO₂ 0%
+        </div>
+        <div class="info-chip" style="bottom:100px; left:-30px; animation-delay:.8s">
+          💰 25 жыл хызмет
+        </div>
+
+        <!-- Panels -->
+        <div class="panel-group">
+          <div class="panel-card lit" id="panel-1"></div>
+          <div class="panel-card lit" id="panel-2"></div>
+          <div class="panel-card"    id="panel-3"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     HOW IT WORKS
+═══════════════════════════════════════════════════════════════ -->
+<section id="how" aria-labelledby="how-title">
+  <div class="container">
+    <div class="badge">🔬 Технология</div>
+    <h2 class="section-title" id="how-title">Қалай Жумыс Ислейди?</h2>
+    <p class="section-sub">
+      Фотоэлементтен инверторға — күн нурынан тоққа дейинги жол
+    </p>
+
+    <div class="steps-grid">
+      <!-- Step 1 -->
+      <div class="step-card reveal" id="step-1">
+        <div class="step-number">1</div>
+        <span class="step-icon">🌞</span>
+        <h3>Күн Нуры Тийеди</h3>
+        <p>
+          Фотоны (жарық бөлшеклери) күн панелиниң бетине урылады.
+          Панель кремний негизли фотоэлементлерден тураады.
+        </p>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="step-card reveal" id="step-2">
+        <div class="step-number">2</div>
+        <span class="step-icon">⚛️</span>
+        <h3>Электронлар Қозғалысқа Келеди</h3>
+        <p>
+          Фотон энергиясы кремнийдеги электронларды қозғалысқа мәжбүр етеди.
+          Бул «фотоэлектр эффекти» деп аталады ҳәм тиккелей тоқ (DC) пайда болады.
+        </p>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="step-card reveal" id="step-3">
+        <div class="step-number">3</div>
+        <span class="step-icon">🔄</span>
+        <h3>Инвертор Айландырады</h3>
+        <p>
+          Тиккелей тоқ (DC) инвертор арқалы үйде қолланылатуғын
+          айнымалы тоққа (AC, 220В) айландырылады.
+        </p>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="step-card reveal" id="step-4">
+        <div class="step-number">4</div>
+        <span class="step-icon">🏠</span>
+        <h3>Үйге Берилedi</h3>
+        <p>
+          Тоқ розеткаларға, жарыққа ҳәм барлық электр приборларға
+          барады. Артығы аккумулятор ямаса желиге жиберилиўи мүмкин.
+        </p>
+      </div>
+
+      <!-- Step 5 -->
+      <div class="step-card reveal" id="step-5">
+        <div class="step-number">5</div>
+        <span class="step-icon">🔋</span>
+        <h3>Сақлаў (Аккумулятор)</h3>
+        <p>
+          Артықша энергия батарея аккумуляторларда сақланады.
+          Бул түнде ямаса бұлтлы ҳаўада тоқ менен тәмийинлейди.
+        </p>
+      </div>
+
+      <!-- Step 6 -->
+      <div class="step-card reveal" id="step-6">
+        <div class="step-number">6</div>
+        <span class="step-icon">🔌</span>
+        <h3>Желиге Байланыс</h3>
+        <p>
+          Желиге байланысқан системаларда артықша тоқ мәмлекетлик
+          желиге берилиўи ямаса одан тоқ алыныўы мүмкин.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     BENEFITS
+═══════════════════════════════════════════════════════════════ -->
+<section id="benefits" aria-labelledby="benefits-title">
+  <div class="container">
+    <div class="badge">🌿 Артықшылықлар</div>
+    <h2 class="section-title" id="benefits-title">Тийкарғы Пайдалары</h2>
+    <p class="section-sub">Экология, ғәрезсизлик ҳәм материаллық үнем</p>
+
+    <div class="benefits-grid">
+      <!-- Ecology -->
+      <div class="benefit-card reveal" id="benefit-ecology">
+        <div class="benefit-icon">🌿</div>
+        <h3>Экологиялық Таза</h3>
+        <p>Тоқ өндирген ўақытта ҳеш қандай зыянлы газ ямаса шаң шықпайды.</p>
+        <ul>
+          <li>Ҳаўаны, суўды, топырақты ластамайды</li>
+          <li>1 кВт·сааттан тоқта 0.4–0.7 кг CO₂ үнемленеди</li>
+          <li>4 кВт система жылына 700+ кг CO₂ азайтады</li>
+          <li>Атмосфераға зыянлы газ шықпайды</li>
+        </ul>
+      </div>
+
+      <!-- Independence -->
+      <div class="benefit-card reveal" id="benefit-independence">
+        <div class="benefit-icon">🏡</div>
+        <h3>Энергетикалық Ғәрезсизлик</h3>
+        <p>Сыртқы желиден тәуелсизликти арттырады ҳәм исенимли тоқ менен тәмийинлейди.</p>
+        <ul>
+          <li>Желидеги үзилиўлер мәселесин шешиўге жәрдем береди</li>
+          <li>Аккумулятор менен түнде де жумыс ислейди</li>
+          <li>Электр баҳасының өсиўинен ғәрезсизлик</li>
+          <li>Узақ мүддетли исенимли энергия дереги</li>
+        </ul>
+      </div>
+
+      <!-- Economic -->
+      <div class="benefit-card reveal" id="benefit-economic">
+        <div class="benefit-icon">💰</div>
+        <h3>Қәрежетлерди Үнемлеў</h3>
+        <p>Орнатылған соң узақ жыллар бойы электр шотлары кескин азаяды.</p>
+        <ul>
+          <li>25–30 жыллық хызмет мүддети</li>
+          <li>Айлик электр шотын 60–90% азайтыўы мүмкин</li>
+          <li>Артықша тоқты желиге сатыў мүмкиншилиги</li>
+          <li>Мүлк қунын арттырады</li>
+        </ul>
+      </div>
+
+      <!-- Low maintenance -->
+      <div class="benefit-card reveal" id="benefit-maintenance">
+        <div class="benefit-icon">🔧</div>
+        <h3>Аз Техникалық Қаўипсизлик</h3>
+        <p>Ҳәрекетлениўши бөлеклер жоқ, сол себепли тоқтаўсыздан жумыс ислейди.</p>
+        <ul>
+          <li>Жылына 1–2 мәрте жуўыў жеткиликли</li>
+          <li>Жаңбыр өзи тазалайды</li>
+          <li>Ҳәрекетлениўши бөлеклер жоқ — тозыў минималь</li>
+          <li>Инвертор 10–15 жылда алмастырылады</li>
+        </ul>
+      </div>
+
+      <!-- Technology -->
+      <div class="benefit-card reveal" id="benefit-tech">
+        <div class="benefit-icon">📡</div>
+        <h3>Заманаўий Технология</h3>
+        <p>Панель технологиясы жыл сайын жетилисип, нәтийжелилиги артып бармоқда.</p>
+        <ul>
+          <li>Жоқары сапалы панельлер 25 жылдан соң 80% нәтийжелиликти сақлайды</li>
+          <li>Смарт инверторлар жай мониторинг имканини береди</li>
+          <li>WiFi арқалы телефондан бақлаў мүмкин</li>
+          <li>Аккумулятор технологиясы тез раўажланмоқда</li>
+        </ul>
+      </div>
+
+      <!-- Resale -->
+      <div class="benefit-card reveal" id="benefit-resale">
+        <div class="benefit-icon">📈</div>
+        <h3>Инвестиция сыпатында</h3>
+        <p>Күн панельлери мүлк қунын арттырады ҳәм узақ мүддетли пайда береди.</p>
+        <ul>
+          <li>6–10 жылда орташа өз-өзин ақлайды</li>
+          <li>25 жыл ишинде орнатыў қәрежетинен 3–5 есе пайда</li>
+          <li>Панелли мүлклер базарда жоқарырақ баҳаланады</li>
+          <li>Инфляциядан қорғаныс — тоқ баҳасы өссе, сизиң пайдаңыз арта береди</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     WEATHER
+═══════════════════════════════════════════════════════════════ -->
+<section id="weather" aria-labelledby="weather-title">
+  <div class="container">
+    <div class="badge">🌦️ Ҳаўа-Рай</div>
+    <h2 class="section-title" id="weather-title">Ҳәр Қандай Ҳаўада</h2>
+    <p class="section-sub">
+      Панельлер тек жарықтан жумыс ислейди — жылылықтан емес.<br/>
+      Карточкаға басып толығырақ мағлыўматты биліп алың.
+    </p>
+    <div class="weather-grid" id="weather-grid">
+      <!-- JS арқалы толтырылады -->
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     STATS
+═══════════════════════════════════════════════════════════════ -->
+<section id="stats" aria-labelledby="stats-title">
+  <div class="container">
+    <div class="badge">📊 Фактлер</div>
+    <h2 class="section-title" id="stats-title">Санлар Тилинде</h2>
+    <p class="section-sub">Database'тен алынған тийкарғы статистика</p>
+    <div class="stats-grid" id="stats-grid">
+      <!-- JS + API арқалы толтырылады -->
+      <div class="empty-state">
+        <span>⏳</span>
+        <p>Мағлыўмат жүкленмоқда…</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     CALCULATOR
+═══════════════════════════════════════════════════════════════ -->
+<section id="calculator" aria-labelledby="calc-title">
+  <div class="container">
+    <div class="badge">🧮 Интерактив</div>
+    <h2 class="section-title" id="calc-title">Экономикалық Калькулятор</h2>
+    <p class="section-sub">
+      Параметрлерди киргизиң — Python backend есаплап Chart.js диаграмма сызады
+    </p>
+
+    <div class="calc-wrap">
+      <!-- Form -->
+      <div class="calc-form">
+        <h3>⚙️ Параметрлер</h3>
+
+        <div class="form-group">
+          <label for="panel-range">Панель саны: <span id="panel-val">8</span> дана</label>
+          <div class="range-wrap">
+            <input type="range" id="panel-range" min="2" max="60" value="8"
+                   aria-label="Панель санын таңлаң" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="panel-watt">Панель қуўаты (Ватт)</label>
+          <select id="panel-watt">
+            <option value="300">300 Вт — Стандарт</option>
+            <option value="400" selected>400 Вт — Популяр</option>
+            <option value="500">500 Вт — Жоқары қуўатлы</option>
+            <option value="600">600 Вт — Максималь</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="tariff">Электр тарифи (сум/кВт·сааттан)</label>
+          <input type="number" id="tariff" value="900" min="100" max="5000"
+                 aria-label="Электр тарифин киргизиң" />
+        </div>
+
+        <div class="form-group">
+          <label for="install-cost">Орнатыў қәрежети (сум)</label>
+          <input type="number" id="install-cost" value="8000000" min="1000000" step="500000"
+                 aria-label="Орнатыў қәрежетин киргизиң" />
+        </div>
+
+        <div class="form-group">
+          <label for="sun-hours">Күнлик орташа күн нурланыў (сааттан)</label>
+          <select id="sun-hours">
+            <option value="4.0">4.0 — Шимал аймақлар</option>
+            <option value="4.5">4.5 — Орта аймақ, қыс</option>
+            <option value="5.5" selected>5.5 — Өзбекстан орташа</option>
+            <option value="6.5">6.5 — Жазғы мәўсим</option>
+            <option value="7.5">7.5 — Максималь жаз</option>
+          </select>
+        </div>
+
+        <button class="btn-calc" id="calc-btn" onclick="runCalculator()"
+                aria-label="Калькуляторды ислеткизиў">
+          ⚡ Есаплаў
+        </button>
+      </div>
+
+      <!-- Results -->
+      <div class="calc-results" id="results-box">
+        <div class="empty-state">
+          <span>🧮</span>
+          <p>Параметрлерни киргизип «Есаплаў» басыңыз.<br/>
+             Нәтийжелер ҳәм диаграмма пайда болады.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     NETTO-METERING
+═══════════════════════════════════════════════════════════════ -->
+<section id="netto" aria-labelledby="netto-title">
+  <div class="container">
+    <div class="badge">🔄 Желиге Сатыў</div>
+    <h2 class="section-title" id="netto-title">Артықша Тоқты Сатыў Системасы</h2>
+    <p class="section-sub">«Нетто-метринг» (Net Metering) — халықаралық тәжрийбе</p>
+
+    <div class="netto-grid">
+      <div class="netto-step reveal" id="netto-1">
+        <div class="netto-num">1</div>
+        <h3>🔌 Желиге Байланыс</h3>
+        <p>
+          Панель системасы мәмлекетлик электр желисине техникалық
+          талапларға муўапық улланады. Буның ушын жергиликли электр
+          компаниясы менен шәртнама дүзиледи.
+        </p>
+      </div>
+
+      <div class="netto-step reveal" id="netto-2">
+        <div class="netto-num">2</div>
+        <h3>📟 Эки Тарифли Счётчик</h3>
+        <p>
+          Арнаўлы «двухтарифный» (эки тарифли) электр счётчики орнатылады.
+          Бул счётчик ҳәм тоқ алыўды, ҳәм тоқ бериўди өлшей алады.
+        </p>
+      </div>
+
+      <div class="netto-step reveal" id="netto-3">
+        <div class="netto-num">3</div>
+        <h3>☀️ Күндиз — Берилади</h3>
+        <p>
+          Панельлер тутыныўдан артық тоқ өндирсе, артығы желиге
+          жиберилиўи ҳәм счётчик кери айланады (сизиң пайдаңызға есапланады).
+        </p>
+      </div>
+
+      <div class="netto-step reveal" id="netto-4">
+        <div class="netto-num">4</div>
+        <h3>🌙 Түнде — Алынады</h3>
+        <p>
+          Панельлер жумыс ислемейтуғын ўақытта (түн, бұлт) желиден
+          тоқ алынады. Счётчик тийкарынан бурунғы тарафқа айланады.
+        </p>
+      </div>
+
+      <div class="netto-step reveal" id="netto-5">
+        <div class="netto-num">5</div>
+        <h3>📋 Айлық Есап</h3>
+        <p>
+          Айдың ақырында тек берген ҳәм алған тоқтың айырымшалығы
+          есапланады. Берилген тоқ артық болса — компания сизге ақша
+          аўдарады ямаса кейинги айға есапқа алады.
+        </p>
+      </div>
+
+      <div class="netto-step reveal" id="netto-6">
+        <div class="netto-num">6</div>
+        <h3>⚠️ Маҳалле</h3>
+        <p>
+          Артықша тоқты желиге сатыў мүмкиншилиги ҳәр мәмлекетте
+          ямаса аймақта нызамнамаға байланысты. Орнатыўдан алдын
+          жергиликли энергетика органлары менен кеңесиў усыныс етиледи.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     FAQ
+═══════════════════════════════════════════════════════════════ -->
+<section id="faq" aria-labelledby="faq-title">
+  <div class="container">
+    <div class="badge">❓ Саўал-Жуўап</div>
+    <h2 class="section-title" id="faq-title">Жийи Бериледиган Саўаллар</h2>
+    <p class="section-sub">Саўалға басып жуўабын оқыңыз</p>
+
+    <div class="faq-list" id="faq-list" role="list">
+      <!-- JS + API арқалы толтырылады -->
+      <div class="empty-state">
+        <span>💬</span>
+        <p>Жүкленмоқда…</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════════════════════════ -->
+<footer id="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <span>☀️</span> КүнЭнергия
+      </div>
+      <ul class="footer-links" role="list">
+        <li><a href="#how"        id="footer-how">Жумыс принципи</a></li>
+        <li><a href="#benefits"   id="footer-benefits">Пайдасы</a></li>
+        <li><a href="#calculator" id="footer-calc">Калькулятор</a></li>
+        <li><a href="#faq"        id="footer-faq">FAQ</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-bottom">
+      <p>
+        Бул сайт тек мағлыўматлық мақсетте дүзилген.
+        Барлық мағлыўматлар <span>database.py → solar.db</span> арқалы сақланады.<br/>
+        Технология: <span>HTML · CSS · JavaScript · Python Flask · SQLite · Chart.js</span>
+      </p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

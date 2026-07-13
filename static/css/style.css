@@ -857,6 +857,251 @@ nav.scrolled {
 .netto-step p { color: var(--clr-muted); font-size: 0.92rem; }
 
 /* ═══════════════════════════════════════════════════════════════════
+   MARKET — Дүнья жүзилик ҳәм жергиликли базар
+   ═══════════════════════════════════════════════════════════════════ */
+#market { background: var(--clr-bg2); }
+
+/* Sub-title rows */
+.market-sub-title {
+  display         : flex;
+  align-items     : center;
+  gap             : 16px;
+  margin-bottom   : 36px;
+}
+
+.market-sub-icon {
+  font-size       : 2.2rem;
+  flex-shrink     : 0;
+}
+
+.market-sub-title h3 {
+  font-size       : clamp(1.2rem, 2.5vw, 1.7rem);
+  font-weight     : 800;
+  background      : linear-gradient(135deg, var(--clr-solar), var(--clr-solar2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip : text;
+}
+
+/* ── Company cards grid ────────────────────────────────────────── */
+.market-companies-grid {
+  display         : grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap             : 24px;
+}
+
+.market-company-card {
+  background      : var(--clr-surface);
+  border          : 1px solid var(--clr-border);
+  border-radius   : var(--radius-lg);
+  padding         : 28px 24px;
+  position        : relative;
+  overflow        : hidden;
+  transition      : var(--transition);
+}
+
+.market-company-card::after {
+  content         : '';
+  position        : absolute;
+  inset           : 0;
+  background      : linear-gradient(135deg, rgba(255,201,60,0.05), transparent);
+  pointer-events  : none;
+  opacity         : 0;
+  transition      : var(--transition);
+}
+
+.market-company-card:hover {
+  transform       : translateY(-6px);
+  border-color    : rgba(255,201,60,0.4);
+  box-shadow      : var(--shadow-glow);
+}
+
+.market-company-card:hover::after { opacity: 1; }
+
+.company-flag {
+  font-size       : 2rem;
+  margin-bottom   : 4px;
+}
+
+.company-rank {
+  position        : absolute;
+  top             : 20px; right: 20px;
+  background      : linear-gradient(135deg, var(--clr-solar), var(--clr-solar2));
+  color           : #0a0e1a;
+  font-weight     : 800;
+  font-size       : 0.8rem;
+  padding         : 4px 12px;
+  border-radius   : 99px;
+}
+
+.company-name {
+  font-size       : 1.15rem;
+  font-weight     : 800;
+  color           : var(--clr-solar);
+  margin-bottom   : 4px;
+}
+
+.company-country {
+  font-size       : 0.82rem;
+  color           : var(--clr-muted);
+  margin-bottom   : 16px;
+}
+
+.company-facts {
+  list-style      : none;
+  display         : flex;
+  flex-direction  : column;
+  gap             : 7px;
+}
+
+.company-facts li {
+  font-size       : 0.88rem;
+  color           : var(--clr-muted);
+  display         : flex;
+  align-items     : flex-start;
+  gap             : 8px;
+  line-height     : 1.5;
+}
+
+.company-facts li::before {
+  content         : '▸';
+  color           : var(--clr-solar);
+  font-size       : 0.75rem;
+  flex-shrink     : 0;
+  margin-top      : 2px;
+}
+
+/* ── Trend cards grid ──────────────────────────────────────────── */
+.market-trends-grid {
+  display         : grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap             : 24px;
+}
+
+.market-trend-card {
+  background      : var(--clr-surface);
+  border          : 1px solid var(--clr-border);
+  border-radius   : var(--radius-lg);
+  padding         : 28px 24px;
+  transition      : var(--transition);
+  position        : relative;
+}
+
+.market-trend-card:hover {
+  transform       : translateY(-5px);
+  border-color    : rgba(255,201,60,0.4);
+  box-shadow      : var(--shadow-glow);
+}
+
+.trend-icon {
+  font-size       : 2.4rem;
+  margin-bottom   : 14px;
+  display         : block;
+}
+
+.market-trend-card h4 {
+  font-size       : 1rem;
+  font-weight     : 700;
+  color           : var(--clr-text);
+  margin-bottom   : 14px;
+  line-height     : 1.4;
+}
+
+.market-trend-card ul {
+  list-style      : none;
+  display         : flex;
+  flex-direction  : column;
+  gap             : 7px;
+}
+
+.market-trend-card ul li {
+  font-size       : 0.88rem;
+  color           : var(--clr-muted);
+  display         : flex;
+  align-items     : flex-start;
+  gap             : 8px;
+  line-height     : 1.5;
+}
+
+.market-trend-card ul li::before {
+  content         : '•';
+  color           : var(--clr-solar2);
+  font-weight     : 700;
+  flex-shrink     : 0;
+}
+
+/* ── Comparison table ──────────────────────────────────────────── */
+.market-table-wrap {
+  overflow-x      : auto;
+  border-radius   : var(--radius-lg);
+  border          : 1px solid var(--clr-border);
+}
+
+.market-table {
+  width           : 100%;
+  border-collapse : collapse;
+  font-size       : 0.92rem;
+}
+
+.market-table thead {
+  background      : linear-gradient(135deg, rgba(255,201,60,0.15), rgba(255,140,0,0.08));
+}
+
+.market-table th {
+  padding         : 14px 18px;
+  text-align      : left;
+  font-weight     : 700;
+  color           : var(--clr-solar);
+  font-size       : 0.85rem;
+  text-transform  : uppercase;
+  letter-spacing  : 0.5px;
+  white-space     : nowrap;
+}
+
+.market-table td {
+  padding         : 13px 18px;
+  color           : var(--clr-muted);
+  border-top      : 1px solid rgba(255,255,255,0.05);
+  vertical-align  : middle;
+}
+
+.market-table tbody tr:hover td {
+  background      : rgba(255,201,60,0.04);
+  color           : var(--clr-text);
+}
+
+.market-table td strong {
+  color           : var(--clr-text);
+  font-weight     : 700;
+}
+
+.price-tag {
+  display         : inline-block;
+  padding         : 3px 12px;
+  border-radius   : 99px;
+  font-size       : 0.8rem;
+  font-weight     : 700;
+}
+
+.price-tag.low  {
+  background      : rgba(46,204,113,0.15);
+  color           : var(--clr-green);
+  border          : 1px solid rgba(46,204,113,0.3);
+}
+
+.price-tag.mid  {
+  background      : rgba(255,201,60,0.15);
+  color           : var(--clr-solar);
+  border          : 1px solid rgba(255,201,60,0.3);
+}
+
+.price-tag.high {
+  background      : rgba(52,152,219,0.15);
+  color           : var(--clr-blue);
+  border          : 1px solid rgba(52,152,219,0.3);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
    FAQ
    ═══════════════════════════════════════════════════════════════════ */
 #faq { background: var(--clr-bg2); }
